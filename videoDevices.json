@@ -1,0 +1,14 @@
+[
+  {
+    "category": "video",
+    "name": "Kamera HD FaceTime (wbudowana)",
+    "path": "@device:pnp:\\\\?\\usb#vid_203a&pid_fff9&mi_00#6&28ef9718&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\\global",
+    "id": "Kamera HD FaceTime (wbudowana):\\\\?\\usb#vid_203a&pid_fff9&mi_00#6&28ef9718&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\\global"
+  },
+  {
+    "category": "video",
+    "name": "ZjemCiBulke",
+    "path": "@device:sw:{860BB310-5D01-11D0-BD3B-00A0C911CE86}\\{A3FCE0F5-3493-419F-958A-ABA1250EC20B}",
+    "id": "ZjemCiBulke:"
+  }
+]

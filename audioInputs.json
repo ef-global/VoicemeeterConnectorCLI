@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "Podstawowy sterownik przechwytywania dźwięku",
+    "Id": "{0.0.1.00000000}.{00000000-0000-0000-0000-000000000000}"
+  },
+  {
+    "Name": "Mikrofon (High Definition Audio Device)",
+    "Id": "{0.0.1.00000000}.{6a162963-5d22-482f-ad89-1bab15bc427d}"
+  }
+]
