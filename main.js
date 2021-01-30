@@ -1,8 +1,7 @@
 const VoiceMeeter = require('voicemeeter-connector');
 const fs = require('fs');
+const fsPromises = require('fs').promises
 const xml2js = require('xml2js');
-const audioInputs = require('./audioInputs.json');
-const audioOutputs = require('./audioOutputs.json');
 
 const devices = {
     microphone: 0,
@@ -24,42 +23,49 @@ const command = {
     other: 'other'
 }
 
-module.exports = function (methodCmd, cmd, param2) {
+module.exports = async function (methodCmd, cmd, param2) {
     if (methodCmd === method.outside) {
         switch (cmd) {
             case command.generateSettings: {
+                let audioInputs;
+                let audioOutputs;
+                try {
+                    // hardcoded, we know, we will use this app, and two folders back, we will have this files
+                    bufferAudioInputs = await fsPromises.readFile(`./audioInputs.json`);
+                    bufferAudioOutputs = await fsPromises.readFile(`./audioOutputs.json`);
+
+
+
+                    // const bufferAudioInputs = await fsPromises.readFile(`./audioInputs.json`);
+                    // const bufferAudioOutputs = await fsPromises.readFile(`./audioOutputs.json`);
+                    audioInputs = JSON.parse(bufferAudioInputs);
+                    audioOutputs = JSON.parse(bufferAudioOutputs);
+
+
+                } catch (e) {
+                    console.log("error happened");
+                    console.log(e)
+                    throw e
+                }
+
                 const parser = new xml2js.Parser();
                 fs.readFile('./Settings.xml', function (err, data) {
                     parser.parseString(data, function (err, result) {
                         console.dir(result);
                         console.log('Done');
 
-                        // audioInputs[1].Name
-
                         // update input device (mic) name in xml file to selected one
                         result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].InputDev[0]['$'].name = audioInputs[1].Name
                         result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].OutputDev[0]['$'].name = audioOutputs[1].Name
 
-                        // result.VBAudioVoicemeeterSettings.VoiceMeeterParameters[0].Strip[0]['$'].mute = 1;
-
                         const builder = new xml2js.Builder();
                         const xml = builder.buildObject(result);
 
-                        fs.writeFile('./Settings-modified.xml', xml, (err) => {
+                        fs.writeFile('./VirtualOfficeSettings.xml', xml, (err) => {
                             console.log("is it working ? ")
                             console.log(err)
                         });
                     });
-                });
-
-                const obj = {name: "Super", Surname: "Man", age: 23};
-
-                const builder = new xml2js.Builder();
-                const xml = builder.buildObject(obj);
-
-                fs.writeFile('./test.xml', xml, (err) => {
-                    console.log("is it working ? ")
-                    console.log(err)
                 });
                 break;
             }
@@ -165,4 +171,6 @@ module.exports = function (methodCmd, cmd, param2) {
             setTimeout(vm.disconnect, 100);
         });
     }
+
+    return true
 }

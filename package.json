@@ -6,7 +6,7 @@
   "bin": "bin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pkg": "pkg ."
+    "pkg": "pkg . --target node10-win-x64"
   },
   "keywords": [],
   "author": "",
