@@ -3,15 +3,19 @@ This is [Virtual Office](https://github.com/ef-global/electron-poc) companion CL
 you in
 ## API
 ```
-voicemeeter-helper.exe outside generateSettings - base on audioInputs.json and audioOutputs.json and default Settings.xml (all 3 files has to be in place where you invoke an app), it will create custom .XML file with whole configuration
+voicemeeter-helper.exe outside generateSettings
 ```
+base on audioInputs.json and audioOutputs.json and default Settings.xml (all 3 files has to be in place where you invoke an app), it will create custom .XML file with whole configuration
 
 ```
-voicemeeter-helper.exe inside muteMic - will send request to mute microphone
+voicemeeter-helper.exe inside muteMic
 ```
+ - will send request to mute microphone
 
 ```
-voicemeeter-helper.exe inside unMuteMic - will send request to unmute microphone
+voicemeeter-helper.exe inside unMuteMic
 ```
+ - will send request to unmute microphone
+ 
 
 More methods to come.
