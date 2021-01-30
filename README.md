@@ -23,6 +23,15 @@ More methods to come.
 ## Development
 The most important information about this app is that it runs with `Node 10` which is requirements for some modules used inside, which communicate with Voicemeeter and require this version of Node.
 
+### Debug
+To run app without compiling, make sure that you are using `node 10` (for example with `nvm`), and run
+
+```
+node bin.js [command]
+```
+
+
+### Build
 Other than that, to compile `.exe` file, we use [pkg](https://www.npmjs.com/package/pkg), you can compile new version of app by running
 
 ```
