@@ -19,3 +19,16 @@ voicemeeter-helper.exe inside unMuteMic
  
 
 More methods to come.
+
+## Development
+The most important information about this app is that it runs with `Node 10` which is requirements for some modules used inside, which communicate with Voicemeeter and require this version of Node.
+
+Other than that, to compile `.exe` file, we use [pkg](https://www.npmjs.com/package/pkg), you can compile new version of app by running
+
+```
+npm install - to install dependencies
+```
+
+```
+npm run pkg - to build .exe file for windows
+```
