@@ -1,1 +1,1 @@
-Catalog structure (vendors/voiceeeterConnector) is to show exactly how the app will be used with Virtual Office app.
+This is [Virtual Office's](https://github.com/ef-global/electron-poc) companion CLI app, to manage all stuff related to communication with [Voicemeeter](https://www.google.com/search?client=safari&rls=en&q=voicemeeter&ie=UTF-8&oe=UTF-8) app.
