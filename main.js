@@ -27,19 +27,14 @@ module.exports = async function (methodCmd, cmd, param2) {
     if (methodCmd === method.outside) {
         switch (cmd) {
             case command.generateSettings: {
-                let audioInputs;
-                let audioOutputs;
+                let bufferAudioDevices;
+                let audioInput;
+                let audioOutput;
                 try {
-                    // hardcoded, we know, we will use this app, and two folders back, we will have this files
-                    bufferAudioInputs = await fsPromises.readFile(`./audioInputs.json`);
-                    bufferAudioOutputs = await fsPromises.readFile(`./audioOutputs.json`);
+                    bufferAudioDevices = await fsPromises.readFile(`./selectedAudioDevices.json`);
 
-
-
-                    // const bufferAudioInputs = await fsPromises.readFile(`./audioInputs.json`);
-                    // const bufferAudioOutputs = await fsPromises.readFile(`./audioOutputs.json`);
-                    audioInputs = JSON.parse(bufferAudioInputs);
-                    audioOutputs = JSON.parse(bufferAudioOutputs);
+                    audioInput = JSON.parse(bufferAudioDevices).audioInput;
+                    audioOutput = JSON.parse(bufferAudioDevices).audioOutput;
 
 
                 } catch (e) {
@@ -55,8 +50,8 @@ module.exports = async function (methodCmd, cmd, param2) {
                         console.log('Done');
 
                         // update input device (mic) name in xml file to selected one
-                        result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].InputDev[0]['$'].name = audioInputs[1].Name
-                        result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].OutputDev[0]['$'].name = audioOutputs[1].Name
+                        result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].InputDev[0]['$'].name = audioInput
+                        result.VBAudioVoicemeeterSettings.VoiceMeeterDeviceConfiguration[0].OutputDev[0]['$'].name = audioOutput
 
                         const builder = new xml2js.Builder();
                         const xml = builder.buildObject(result);
